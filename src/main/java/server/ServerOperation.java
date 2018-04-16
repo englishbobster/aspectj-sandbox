@@ -1,8 +1,5 @@
 package server;
 
-import authorisation.AuthLevel;
-import authorisation.Authorization;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -17,13 +14,11 @@ public class ServerOperation extends UnicastRemoteObject implements NumberServer
     }
 
     @Override
-    @Authorization(accessLevel = AuthLevel.ALLOWED)
     public int getNumberNormalUser() throws RemoteException {
         return new Random().nextInt();
     }
 
     @Override
-    @Authorization(accessLevel = AuthLevel.NOT_ALLOWED)
     public Collection<Integer> getNumbersAdminUser() throws RemoteException {
         List<Integer> results = new ArrayList();
         Random rnd = new Random();
