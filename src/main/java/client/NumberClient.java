@@ -15,8 +15,10 @@ public class NumberClient {
             System.out.println("Asking server for a number and got :" + numberClientRmi.getNumber());
 
             Collection<Integer> numbers = numberClientRmi.getNumbers();
-            String result = numbers.stream().map(n -> n.toString()).collect(Collectors.joining(", "));
-            System.out.println("Asking server for some numbers and got: [" + result +"]");
+            if (numbers != null) {
+                String result = numbers.stream().map(n -> n.toString()).collect(Collectors.joining(", "));
+                System.out.println("Asking server for some numbers and got: [" + result +"]");
+            }
 
         } catch (RemoteException e) {
             System.out.println("No registry found");

@@ -2,7 +2,6 @@
     <aspects>
         <aspect name="aspects.AuthorizeMethodAspect"/>
         <weaver options="-verbose -showWeaveInfo">
-        <include within="server.*"/>
         </weaver>
     </aspects>
 </aspectj>

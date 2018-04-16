@@ -9,18 +9,30 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class AuthorizeMethodAspect {
-
     @Pointcut("@annotation(auth)")
-    public void callAt(Authorization auth) {
-        System.out.println(auth.accessLevel().toString());
+    public void annotationPointCutDefinition(Authorization auth){
     }
 
-    @Around("callAt(auth)")
-    public Object around(ProceedingJoinPoint pjp, Authorization auth) throws Throwable{
+    @Pointcut("execution(* *(..))")
+    public void atExecution(){
+    }
+
+    @Around("annotationPointCutDefinition(auth) && atExecution()")
+    public Object aroundAdvice(ProceedingJoinPoint pjp, Authorization auth) throws Throwable{
+        Object returnObject = null;
         if (auth.accessLevel() == AuthLevel.ALLOWED) {
-            return pjp.proceed();
-        } else {
-            return null;
+            try {
+                returnObject = pjp.proceed();
+            } catch (Throwable throwable) {
+                throw throwable;
+            } finally {
+                System.out.println("A method was ignored due to authorization fail.");
+            }
+            return returnObject;
         }
+        else if (auth.accessLevel() == AuthLevel.NOT_ALLOWED){
+            return returnObject;
+        }
+        return returnObject;
     }
 }

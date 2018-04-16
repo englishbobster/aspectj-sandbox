@@ -19,11 +19,13 @@ public class NumberClientRmi {
 
     @Authorization(accessLevel = AuthLevel.ALLOWED)
     public int getNumber() throws RemoteException {
+        System.out.println("Getting a number from the server.");
         return numberServer.getNumberNormalUser();
     }
 
     @Authorization(accessLevel = AuthLevel.NOT_ALLOWED)
     public Collection<Integer> getNumbers() throws RemoteException {
+        System.out.println("Getting some numbers from the server.");
         return numberServer.getNumbersAdminUser();
     }
 }

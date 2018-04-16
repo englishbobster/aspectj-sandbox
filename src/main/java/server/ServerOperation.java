@@ -15,7 +15,7 @@ public class ServerOperation extends UnicastRemoteObject implements NumberServer
 
     @Override
     public int getNumberNormalUser() throws RemoteException {
-        return new Random().nextInt();
+        return new Random().nextInt(10);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ServerOperation extends UnicastRemoteObject implements NumberServer
         List<Integer> results = new ArrayList();
         Random rnd = new Random();
         for (int i = 0; i < 5; i++) {
-            results.add(rnd.nextInt());
+            results.add(rnd.nextInt(10));
         }
         return results;
     }

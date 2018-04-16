@@ -6,7 +6,6 @@ import java.util.Collection;
 
 public interface NumberServerRmiIf extends Remote {
 
-    public int getNumberNormalUser() throws RemoteException;
-
-    public Collection<Integer> getNumbersAdminUser() throws RemoteException;
+    int getNumberNormalUser() throws RemoteException;
+    Collection<Integer> getNumbersAdminUser() throws RemoteException;
 }
