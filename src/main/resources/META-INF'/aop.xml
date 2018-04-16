@@ -1,6 +1,0 @@
-<aspectj>
-    <aspects>
-        <aspect name="aspects.AuthorizeMethodAspect"/>
-        <weaver options="-verbose -showWeaveInfo"/>
-    </aspects>
-</aspectj>

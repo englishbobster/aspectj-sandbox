@@ -11,7 +11,9 @@ import org.aspectj.lang.annotation.Pointcut;
 public class AuthorizeMethodAspect {
 
     @Pointcut("@annotation(auth)")
-    public void callAt(Authorization auth) {}
+    public void callAt(Authorization auth) {
+        System.out.println(auth.accessLevel().toString());
+    }
 
     @Around("callAt(auth)")
     public Object around(ProceedingJoinPoint pjp, Authorization auth) throws Throwable{
